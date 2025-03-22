@@ -89,7 +89,7 @@ namespace BlackFriday.Controllers
             var services = consuleClient.Agent.Services().Result.Response;
             foreach (var service in services)
             {
-                var isCreditCardApi = service.Value.Tags.Any(t => t == "CreditCard") ;
+                var isCreditCardApi = service.Value.Tags.Any(t => t == "CreditCard");
                 if (isCreditCardApi)
                 {
                     try
