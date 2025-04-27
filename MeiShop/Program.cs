@@ -14,6 +14,11 @@ namespace MeiShop
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 
+			builder.Services.AddHttpClient("ProductCatalogJson", client =>
+			{
+				client.BaseAddress = new Uri("http://localhost:5026"); // Adjust port
+			});
+
 			var app = builder.Build();
 
 			app.UseSwagger();
