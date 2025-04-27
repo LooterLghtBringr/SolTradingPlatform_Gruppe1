@@ -1,7 +1,7 @@
 
-using IEGEasyCreditcardService.Services;
+using ProductCatalogJson.Services;
 
-namespace IEGEasyCreditcardService
+namespace ProductCatalogJson
 {
 	public class Program
 	{
@@ -9,14 +9,11 @@ namespace IEGEasyCreditcardService
 		{
 			var builder = WebApplication.CreateBuilder(args);
 
-			// Add services to the container.
-
 			builder.Services.AddControllers();
-			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 
-			builder.Services.AddScoped<ICreditcardValidator, CreditcardValidator>();
+			builder.Services.AddSingleton<LocalProductService>(); // Add services to the container.
 
 			var app = builder.Build();
 
