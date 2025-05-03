@@ -83,7 +83,7 @@ gegebenenfalls ein.
 
 ## Skalierung, Ausfallssicherheit und Logging für CreditPaymentService
 
-# Aufgabe 4 - Viki/Jenny
+# Aufgabe 4 - Viki/Julia
 (theoretische) Überlegungen zum Einsatz von Asynchronen Kommunikationsstilen in der Handelsplattform.
 https://microservices.io/patterns/communication-style/messaging.html
 
@@ -96,7 +96,7 @@ REST APIs (restfulapi.net)
 
 ## PaymentService
 
-# Aufgabe 6 - Viki/Jenny
+# Aufgabe 6 - Viki/Julia
 (theoretische) Überlegungen zu einem PaymentService-Broker. Dieses Service soll zwischen Shops und Payment-Services „vermitteln“.
 
 Mögliche Info-Quellen:
@@ -126,7 +126,7 @@ Umgang mit Ausfallsicherheit –Stichwort: Design for failure / Resilient Software
 
 ## SAGA-Pattern (Service & Client)-Szenario
 
-# Aufgabe 10 - Viki/Jenny
+# Aufgabe 10 - Viki/Julia
 Machen Sie sich mit dem Begriff „Open Data“ vertraut und beschreiben Sie diesen in einigen wenigen Sätzen.
 Beschreiben Sie außerdem mögliche Anwendungsfälle im Zusammenhang mit der Handelsplattform.
 
