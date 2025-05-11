@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "IEGEasyCreditcardService";
+
+package logService;
+
+service Logger {
+  rpc LogMessage (LogRequest) returns (LogReply);
+}
+
+message LogRequest {
+  string message = 1;
+}
+
+message LogReply {
+  string message = 1;
+}

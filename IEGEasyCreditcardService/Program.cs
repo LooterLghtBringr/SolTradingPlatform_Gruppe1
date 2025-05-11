@@ -1,5 +1,6 @@
-
+using IEGEasyCreditcardService.Protos;
 using IEGEasyCreditcardService.Services;
+using Serilog;
 
 namespace IEGEasyCreditcardService
 {
@@ -9,9 +10,15 @@ namespace IEGEasyCreditcardService
 		{
 			var builder = WebApplication.CreateBuilder(args);
 
-			// Add services to the container.
+			var logger = new LoggerConfiguration()
+              .Enrich.FromLogContext()
+			  .WriteTo.gRPC("http://localhost:5000")
+              .CreateLogger();
 
-			builder.Services.AddControllers();
+            builder.Logging.ClearProviders();
+            builder.Logging.AddSerilog(logger);
+
+            builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
