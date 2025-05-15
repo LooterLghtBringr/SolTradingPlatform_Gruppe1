@@ -1,24 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
-using ODataProductsService.Data;
+using ODataProductsService.Services;
 
 namespace ODataProductsService.Controllers
 {
 	public class ProductsController : ODataController
 	{
-		private readonly ProductContext _context;
+		private readonly JsonProductService _service;
 
-		public ProductsController(ProductContext context)
+		public ProductsController(JsonProductService service)
 		{
-			_context = context;
+			_service = service;
 		}
 
-		[EnableQuery] // Aktiviert OData-Abfrageoptionen
+		[EnableQuery] // Aktiviert OData-Abfragen ($filter, $orderby etc.)
 		[HttpGet]
 		public IActionResult Get()
 		{
-			return Ok(_context.Products);
+			return Ok(_service.GetProducts());
 		}
 	}
 }

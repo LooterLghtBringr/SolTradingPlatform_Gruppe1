@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
-using ODataProductsService.Data;
 using ODataProductsService.Models;
+using ODataProductsService.Services;
 
 namespace ODataProductsService
 {
@@ -14,13 +14,12 @@ namespace ODataProductsService
 		{
 			var builder = WebApplication.CreateBuilder(args);
 
-			// Add services to the container.
-
-			builder.Services.AddDbContext<ProductContext>(opt =>
-	opt.UseInMemoryDatabase("ProductDB"));
-
 			builder.Services.AddControllers().AddOData(opt => opt.AddRouteComponents("odata",
 			EdmModelBuilder.GetEdmModel()).Select().Filter().OrderBy().Expand());
+
+			builder.Services.Configure<JsonDataOptions>(
+				builder.Configuration.GetSection("JsonData"));
+			builder.Services.AddSingleton<JsonProductService>();
 
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
