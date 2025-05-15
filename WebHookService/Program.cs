@@ -1,8 +1,5 @@
 
-using Microsoft.AspNetCore.Mvc.Formatters;
-using WebApiContrib.Core.Formatter.Csv;
-
-namespace PaymentService
+namespace WebHookService
 {
     public class Program
     {
@@ -12,14 +9,8 @@ namespace PaymentService
 
             // Add services to the container.
 
-            builder.Services.AddControllers(options =>
-            {
-                options.RespectBrowserAcceptHeader = true; // Allow content negotiation
-                options.OutputFormatters.Add(new XmlSerializerOutputFormatter()); // Add XML support
-                options.OutputFormatters.Add(new CsvOutputFormatter(new CsvFormatterOptions())); // Add CSV support
-            });
-
-            builder.Services.AddHttpClient();
+            builder.Services.AddControllers();
+            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 

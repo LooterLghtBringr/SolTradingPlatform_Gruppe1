@@ -10,13 +10,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentService", "PaymentService\PaymentService.csproj", "{4125E73A-2A2B-4D70-8E67-60696719D462}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalogJson", "ProductCatalogJson\ProductCatalogJson.csproj", "{07F78138-C0F3-4592-A570-6E34CFEB37D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalogSqlite", "ProductCatalogSqlite\ProductCatalogSqlite.csproj", "{22C76322-D08E-43DC-B5CC-A3B793CCD7DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHookService", "WebHookService\WebHookService.csproj", "{E2001F34-0A8A-400E-8BF1-89E9943FE77E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcService", "GrpcService\GrpcService.csproj", "{0CACC2C3-68D1-4DE1-834B-17520EF7E170}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ODataProductsService", "ODataProductsService\ODataProductsService.csproj", "{64B6D3DB-F13C-4AAE-9BA4-C4E0A58FB0DA}"
 EndProject
@@ -48,6 +49,14 @@ Global
 		{22C76322-D08E-43DC-B5CC-A3B793CCD7DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22C76322-D08E-43DC-B5CC-A3B793CCD7DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22C76322-D08E-43DC-B5CC-A3B793CCD7DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2001F34-0A8A-400E-8BF1-89E9943FE77E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2001F34-0A8A-400E-8BF1-89E9943FE77E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2001F34-0A8A-400E-8BF1-89E9943FE77E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2001F34-0A8A-400E-8BF1-89E9943FE77E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CACC2C3-68D1-4DE1-834B-17520EF7E170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CACC2C3-68D1-4DE1-834B-17520EF7E170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CACC2C3-68D1-4DE1-834B-17520EF7E170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CACC2C3-68D1-4DE1-834B-17520EF7E170}.Release|Any CPU.Build.0 = Release|Any CPU
 		{64B6D3DB-F13C-4AAE-9BA4-C4E0A58FB0DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{64B6D3DB-F13C-4AAE-9BA4-C4E0A58FB0DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64B6D3DB-F13C-4AAE-9BA4-C4E0A58FB0DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
