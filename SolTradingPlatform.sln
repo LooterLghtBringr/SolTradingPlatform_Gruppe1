@@ -22,8 +22,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHookService", "WebHookSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcService", "GrpcService\GrpcService.csproj", "{0CACC2C3-68D1-4DE1-834B-17520EF7E170}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ODataProductsService", "ODataProductsService\ODataProductsService.csproj", "{64B6D3DB-F13C-4AAE-9BA4-C4E0A58FB0DA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ODataClient", "ODataClient\ODataClient.csproj", "{D9C688C2-E345-4D9C-962D-43B234B550C3}"
 EndProject
 Global
@@ -60,10 +58,6 @@ Global
 		{0CACC2C3-68D1-4DE1-834B-17520EF7E170}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CACC2C3-68D1-4DE1-834B-17520EF7E170}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CACC2C3-68D1-4DE1-834B-17520EF7E170}.Release|Any CPU.Build.0 = Release|Any CPU
-		{64B6D3DB-F13C-4AAE-9BA4-C4E0A58FB0DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64B6D3DB-F13C-4AAE-9BA4-C4E0A58FB0DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64B6D3DB-F13C-4AAE-9BA4-C4E0A58FB0DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64B6D3DB-F13C-4AAE-9BA4-C4E0A58FB0DA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D9C688C2-E345-4D9C-962D-43B234B550C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D9C688C2-E345-4D9C-962D-43B234B550C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9C688C2-E345-4D9C-962D-43B234B550C3}.Release|Any CPU.ActiveCfg = Release|Any CPU

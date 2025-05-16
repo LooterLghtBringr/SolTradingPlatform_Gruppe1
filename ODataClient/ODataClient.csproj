@@ -11,8 +11,4 @@
     <PackageReference Include="Microsoft.OData.Client" Version="8.2.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ODataProductsService\ODataProductsService.csproj" />
-  </ItemGroup>
-
 </Project>
