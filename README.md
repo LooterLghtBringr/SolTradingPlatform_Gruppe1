@@ -69,9 +69,13 @@ Ersetzen Sie die hard codierten Werte im MeiShop/ProductList-Controller durch de
 Ein weiterer Produktkatalog-Service soll Produkte aus einem Text File auf einem FTP-Server auslesen oder einem anderen geeigneten
 Persistencestore und zur Verfügung stellen.
 
-## Microservice - Liste von Produkten
+## Microservice ProductCatalogJson - Produkte aus JSON-Datei
+Dieser Microservice stellt eine Liste von Produkten bereit, die in einer JSON-Datei gespeichert sind. Die JSON-Datei wird lokal im Microservice gespeichert und kann über
+eine REST-API abgerufen werden. Der Microservice implementiert grundlegende CRUD-Operationen (Create, Read, Update, Delete) für die Produkte.
 
-## Microservice - Produkte aus Text File
+## Microservice ProductCatalogSqlite - Produkte aus Sqlite-Datenbank
+Dieser Microservice stellt eine Liste von Produkten bereit, die in einer Sqlite-Datenbank gespeichert sind. Die Datenbank wird lokal im Microservice gespeichert und kann über
+eine REST-API abgerufen werden.
 
 # Aufgabe 3 - Coding (retry, zentrales Logging-Service, Fallback) - Philipp
 Skalierung, Ausfallssicherheit und Logging (Design for failure) für CreditPaymentService. Detailsbeschreibung:
@@ -118,6 +122,7 @@ Machen Sie sich mit dem Begriff OData vertraut. Überlegen und implementieren Sie
 
 ## OData (Service & Client)-Szenario
 
+
 # Aufgabe 9 - Coding SAGA-Pattern - Mario
 Machen Sie sich mit dem Begriff SAGA-Pattern vertraut. Überlegen und implementieren Sie ein mögliches SAGA-Pattern
 Szenario(Service & Client)-Szenario
@@ -125,6 +130,7 @@ Szenario(Service & Client)-Szenario
 Umgang mit Ausfallsicherheit –Stichwort: Design for failure / Resilient Software Design
 
 ## SAGA-Pattern (Service & Client)-Szenario
+
 
 # Aufgabe 10 - Viki/Julia
 Machen Sie sich mit dem Begriff „Open Data“ vertraut und beschreiben Sie diesen in einigen wenigen Sätzen.

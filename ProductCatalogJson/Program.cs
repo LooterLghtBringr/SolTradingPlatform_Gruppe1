@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.OData;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
 using ProductCatalogJson.Services;
 
 namespace ProductCatalogJson
@@ -8,11 +12,13 @@ namespace ProductCatalogJson
 		{
 			var builder = WebApplication.CreateBuilder(args);
 
-			builder.Services.AddControllers();
+			builder.Services.AddControllers().AddOData(opt => opt.AddRouteComponents("odata",
+				EdmModelBuilder.GetEdmModel()).Select().Filter().OrderBy().Expand());
+
+			builder.Services.AddSingleton<LocalProductService>();
+
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
-
-			builder.Services.AddSingleton<LocalProductService>(); // Add services to the container.
 
 			var app = builder.Build();
 
@@ -23,7 +29,20 @@ namespace ProductCatalogJson
 			app.UseAuthorization();
 			app.MapControllers();
 
+			app.UseRouting();
+			app.UseEndpoints(endpoints => endpoints.MapControllers());
+
 			app.Run();
+		}
+
+		public static class EdmModelBuilder
+		{
+			public static IEdmModel GetEdmModel()
+			{
+				var builder = new ODataConventionModelBuilder();
+				builder.EntitySet<Models.Product>("Products");
+				return builder.GetEdmModel();
+			}
 		}
 	}
 }

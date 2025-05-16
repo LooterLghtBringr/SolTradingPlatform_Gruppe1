@@ -7,7 +7,7 @@ namespace ODataClient
 	{
 		static void Main(string[] args)
 		{
-			var serviceUri = new Uri("http://localhost:5121/odata/");
+			var serviceUri = new Uri("http://localhost:5026/odata/");
 			var context = new Container(serviceUri);
 
 			// Beispielabfragen:
