@@ -1,42 +1,42 @@
 [
   {
     "Id": 1,
-    "Name": "Product 1"
+    "Name": "Wireless Bluetooth Headphones"
   },
   {
     "Id": 2,
-    "Name": "Product 2"
+    "Name": "Stainless Steel Water Bottle"
   },
   {
     "Id": 3,
-    "Name": "Product 3"
+    "Name": "Mechanical Gaming Keyboard"
   },
   {
     "Id": 4,
-    "Name": "Product 4"
+    "Name": "Organic Cotton T-Shirt"
   },
   {
     "Id": 5,
-    "Name": "Product 5"
+    "Name": "Smart LED Desk Lamp"
   },
   {
     "Id": 6,
-    "Name": "Product 6"
+    "Name": "Portable Phone Charger 10000mAh"
   },
   {
     "Id": 7,
-    "Name": "Product 7"
+    "Name": "Non-Stick Cooking Set"
   },
   {
     "Id": 8,
-    "Name": "Product 8"
+    "Name": "Yoga Mat with Carrying Strap"
   },
   {
     "Id": 9,
-    "Name": "Product 9"
+    "Name": "Wireless Charging Pad"
   },
   {
     "Id": 10,
-    "Name": "Product 10"
+    "Name": "Noise Cancelling Earbuds"
   }
 ]

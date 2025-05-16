@@ -11,17 +11,17 @@ namespace ODataClient
 			var context = new Container(serviceUri);
 
 			// Beispielabfragen:
-			// 1. Alle Produkte unter 100€
+			// 1. Alle Produkte mit ID < 5
 			var cheapProducts = context.Products
 				.AddQueryOption("$filter", "Id lt 5")
 				.ToList();
 
-			// 2. Nach Kategorie gruppiert
+			// 2. Nach ID gruppiert
 			var byCategory = context.Products
 				.AddQueryOption("$orderby", "Id")
 				.ToList();
 
-			// 3. Nur Name und Preis
+			// 3. Nur Name und ID
 			var projected = context.Products
 				.AddQueryOption("$select", "Id,Name")
 				.ToList();
