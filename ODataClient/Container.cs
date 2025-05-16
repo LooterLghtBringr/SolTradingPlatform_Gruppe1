@@ -1,5 +1,5 @@
 ﻿using Microsoft.OData.Client;
-using ODataProductsService.Models;
+using ProductCatalogJson.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
