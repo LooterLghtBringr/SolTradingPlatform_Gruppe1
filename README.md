@@ -121,7 +121,8 @@ Webhook-Subscriber: Überlegen und implementieren Sie ein mögliches Webhook-Szena
 Machen Sie sich mit dem Begriff OData vertraut. Überlegen und implementieren Sie ein mögliches OData (Service & Client)-Szenario.
 
 ## OData (Service & Client)-Szenario
-
+In dem Microservice ProductCatalogJson wurde OData implementiert. Die Produkte werden als QueryableCollection bereitgestellt und
+es werden im ODataClient (Console Application) exemplarisch 3 Abfragen durchgeführt und ausgegeben.
 
 # Aufgabe 9 - Coding SAGA-Pattern - Mario
 Machen Sie sich mit dem Begriff SAGA-Pattern vertraut. Überlegen und implementieren Sie ein mögliches SAGA-Pattern
@@ -130,7 +131,8 @@ Szenario(Service & Client)-Szenario
 Umgang mit Ausfallsicherheit –Stichwort: Design for failure / Resilient Software Design
 
 ## SAGA-Pattern (Service & Client)-Szenario
-
+Das SAGA Pattern wurde im Microservice PaymentService implementiert. Es werden zwei Endpunkte bereitgestellt (ReservePayment und CompensatePayment).
+Diese Endpunkte sind für die Reservierung und Kompensation von Zahlungen zuständig.
 
 # Aufgabe 10 - Viki/Julia
 Machen Sie sich mit dem Begriff „Open Data“ vertraut und beschreiben Sie diesen in einigen wenigen Sätzen.
