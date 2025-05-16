@@ -66,5 +66,67 @@ namespace PaymentService.Controllers
             var response = await _httpClient.PostAsync(webhookUrl, content);
             response.EnsureSuccessStatusCode();
         }
-    }
+
+		[HttpPost("ReservePayment")]
+        public async Task<ActionResult> ReservePayment([FromBody] PaymentReservationRequest request)
+		{
+            try
+            {
+				if (request.Amount <= 0)
+					return BadRequest("Invalid amount");
+
+                var payment = new Payment
+                {
+					Id = Payments.Count + 1,
+					Date = request.Date,
+                    Payee = request.Payee,
+                    Amount = request.Amount,
+                    SagaId = request.SagaId,
+                    IsReserved = true,
+                };
+
+				Payments.Add(payment);
+				_logger.LogInformation($"SAGA {request.SagaId}: Payment reserved (ID: {payment.Id})");
+
+				await SendOrderCreatedWebhookAsync(payment).ContinueWith(task =>
+				{
+					if (task.IsFaulted)
+					{
+						_logger.LogError("Failed to send webhook: {0}", task.Exception?.Message);
+					}
+				});
+
+				return Ok(payment);
+			}
+            catch (Exception ex)
+            {
+				_logger.LogError(ex, $"SAGA {request.SagaId}: Payment reservation failed");
+				return StatusCode(500, "Payment reservation failed");
+			}
+		}
+
+		[HttpPost("CompensatePayment")]
+		public async Task<ActionResult> CompensatePayment([FromBody] PaymentCompensationRequest request)
+		{
+			var payment = Payments.FirstOrDefault(p => p.Id == request.PaymentId && p.SagaId == request.SagaId);
+			if (payment == null)
+			{
+				_logger.LogWarning($"SAGA {request.SagaId}: Payment {request.PaymentId} not found for compensation");
+				return NotFound();
+			}
+
+			Payments.Remove(payment);
+			_logger.LogInformation($"SAGA {request.SagaId}: Payment {payment.Id} compensated");
+
+			await SendOrderCreatedWebhookAsync(payment).ContinueWith(task =>
+			{
+				if (task.IsFaulted)
+				{
+					_logger.LogError("Failed to send webhook: {0}", task.Exception?.Message);
+				}
+			});
+
+			return Ok(payment);
+		}
+	}
 }
