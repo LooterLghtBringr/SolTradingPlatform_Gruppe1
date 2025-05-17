@@ -48,12 +48,13 @@ Vorteile:
 
 Zusätzlich zu den genannten Services wären sinnvoll:
 
-**Microservice**		**Business Capability**	**Verantwortlichkeit**
-User-Service			Benutzerverwaltung		Registrierung, Login, Profilmanagement
-Order-Service			Auftragsabwicklung		Bestellungen erstellen/tracken
-Notification-Service	Benachrichtigungen		E-Mails/SMS zu Bestellungen
-Search-Service			Produktsuche			Volltextsuche, Filterung
-Analytics-Service		Geschäftsanalysen		Verkaufsstatistiken
+| Microservice          | Business Capability     | Verantwortlichkeit                     |
+|-----------------------|-------------------------|----------------------------------------|
+| User-Service          | Benutzerverwaltung      | Registrierung, Login, Profilmanagement |
+| Order-Service         | Auftragsabwicklung      | Bestellungen erstellen/tracken         |
+| Notification-Service  | Benachrichtigungen      | E-Mails/SMS zu Bestellungen            |
+| Search-Service        | Produktsuche            | Volltextsuche, Filterung               |
+| Analytics-Service     | Geschäftsanalysen       | Verkaufsstatistiken                    |
 
 ### Service 1
 #### Funktionalität
