@@ -64,166 +64,166 @@ Zusätzlich zu den genannten Services wären sinnvoll:
 
 ### Shopping-Service
 #### Funktionalität
-Warenkorbverwaltung (Hinzufügen/Entfernen von Artikeln)
-Checkout-Prozess-Initialisierung
-Preisberechnung inkl. Rabatte
+- Warenkorbverwaltung (Hinzufügen/Entfernen von Artikeln)
+- Checkout-Prozess-Initialisierung
+- Preisberechnung inkl. Rabatte
 
 #### Verantwortlichkeit (Business Capabilities)
-Abbildung des Einkaufserlebnisses
-Zusammenführung von Produktdaten aus verschiedenen Katalogen
-Vorbereitung der Bestellung für den Order-Service
+- Abbildung des Einkaufserlebnisses
+- Zusammenführung von Produktdaten aus verschiedenen Katalogen
+- Vorbereitung der Bestellung für den Order-Service
 
 #### Schnittstellen (API inkl. Datenaustauschformate)
-http
-POST /api/cart/items
-Content-Type: application/json
-{
-  "productId": "prod_123",
-  "quantity": 2
-}
-
-GET /api/cart
-→ Returns:
-{
-  "items": [
+    http
+    POST /api/cart/items
+    Content-Type: application/json
     {
       "productId": "prod_123",
-      "name": "Bio-Äpfel",
-      "price": 2.99,
       "quantity": 2
     }
-  ],
-  "total": 5.98
-}
+
+    GET /api/cart
+    → Returns:
+    {
+      "items": [
+        {
+          "productId": "prod_123",
+          "name": "Bio-Äpfel",
+          "price": 2.99,
+          "quantity": 2
+        }
+      ],
+      "total": 5.98
+    }
 
 #### Datenhaltung (Decentralized Data Management)
-Redis: Für Warenkorbdaten (schneller Key-Value-Store)
-TTL: 24h für nicht abgeschlossene Warenkörbe
-Isoliert: Kein Zugriff auf Produktdatenbanken anderer Services
+- Redis: Für Warenkorbdaten (schneller Key-Value-Store)
+- TTL: 24h für nicht abgeschlossene Warenkörbe
+- Isoliert: Kein Zugriff auf Produktdatenbanken anderer Services
 
 ### Payment-Service
 #### Funktionalität
-Zahlungsabwicklung (Kreditkarte, PayPal, etc.)
-Transaktionsverfolgung
-Rückerstattungen
+- Zahlungsabwicklung (Kreditkarte, PayPal, etc.)
+- Transaktionsverfolgung
+- Rückerstattungen
 
 #### Verantwortlichkeit (Business Capabilities)
-Sicherer Zahlungsabschluss
-Compliance (PCI-DSS)
-Zahlungsgateway-Integration
+- Sicherer Zahlungsabschluss
+- Compliance (PCI-DSS)
+- Zahlungsgateway-Integration
 
 #### Schnittstellen
-http
-POST /api/payments
-{
-  "orderId": "ord_789",
-  "amount": 29.99,
-  "currency": "EUR",
-  "paymentMethod": "creditcard",
-  "cardToken": "tok_visa123"
-}
+    http
+    POST /api/payments
+    {
+      "orderId": "ord_789",
+      "amount": 29.99,
+      "currency": "EUR",
+      "paymentMethod": "creditcard",
+      "cardToken": "tok_visa123"
+    }
 
-→ Response:
-{
-  "paymentId": "pay_456",
-  "status": "completed"
-}
+    → Response:
+    {
+      "paymentId": "pay_456",
+      "status": "completed"
+    }
 
 #### Datenhaltung
-PostgreSQL: ACID-konforme Transaktionsdaten
-Verschlüsselt: Kreditkartentokens separat gespeichert
-Kein Zugriff: Auf Bestelldaten (nur Order-ID-Referenz)
+- PostgreSQL: ACID-konforme Transaktionsdaten
+- Verschlüsselt: Kreditkartentokens separat gespeichert
+- Kein Zugriff: Auf Bestelldaten (nur Order-ID-Referenz)
 
 ### Product-Service (BauernladenA)
 #### Funktionalität
-Produktdatenverwaltung
-Lagerbestandsaktualisierung
-Kategorisierung
+- Produktdatenverwaltung
+- Lagerbestandsaktualisierung
+- Kategorisierung
 
 #### Verantwortlichkeit
-Zentrale Produktwahrheit für einen Anbieter
-Verfügbarkeitsmanagement
-Preispflege
+- Zentrale Produktwahrheit für einen Anbieter
+- Verfügbarkeitsmanagement
+- Preispflege
 
 #### Schnittstellen
-http
-GET /api/products?category=fruits
-→ Returns:
-[
-  {
-    "id": "prod_123",
-    "name": "Bio-Äpfel",
-    "price": 2.99,
-    "stock": 150,
-    "farmerId": "farm_A"
-  }
-]
+    http
+    GET /api/products?category=fruits
+    → Returns:
+    [
+      {
+        "id": "prod_123",
+        "name": "Bio-Äpfel",
+        "price": 2.99,
+        "stock": 150,
+        "farmerId": "farm_A"
+      }
+    ]
 
 #### Datenhaltung
-MongoDB: Flexibles Schema für variable Produktattribute
-Ownership: Nur dieser Service schreibt Produktdaten
-Cache: Redis für häufig abgerufene Produkte
+- MongoDB: Flexibles Schema für variable Produktattribute
+- Ownership: Nur dieser Service schreibt Produktdaten
+- Cache: Redis für häufig abgerufene Produkte
 
 ### Order-Service
 #### Funktionalität
-Bestellungsmanagement
-Statusverfolgung (Bearbeitung, Versand)
-Retourenverwaltung
+- Bestellungsmanagement
+- Statusverfolgung (Bearbeitung, Versand)
+- Retourenverwaltung
 
 #### Verantwortlichkeit
-Lebenszyklus einer Bestellung
-Integration von Payment und Shipping
-Rechnungsgenerierung
+- Lebenszyklus einer Bestellung
+- Integration von Payment und Shipping
+- Rechnungsgenerierung
 
 #### Schnittstellen
-http
-POST /api/orders
-{
-  "userId": "usr_42",
-  "items": [
+    http
+    POST /api/orders
     {
-      "productId": "prod_123",
-      "quantity": 2
+      "userId": "usr_42",
+      "items": [
+        {
+          "productId": "prod_123",
+          "quantity": 2
+        }
+      ]
     }
-  ]
-}
 
-→ Response:
-{
-  "orderId": "ord_789",
-  "status": "processing"
-}
+    → Response:
+    {
+      "orderId": "ord_789",
+      "status": "processing"
+    }
 
 #### Datenhaltung
-MySQL: Relationale Struktur für Bestelldetails
-Event Sourcing: Zustandsänderungen als Event-Stream
-Isoliert: Kein direkter Zugriff auf Warenkorbdaten
+- MySQL: Relationale Struktur für Bestelldetails
+- Event Sourcing: Zustandsänderungen als Event-Stream
+- Isoliert: Kein direkter Zugriff auf Warenkorbdaten
 
 ### Notification-Service
 #### Funktionalität
-Versand von E-Mails/SMS
-Benachrichtigungsvorlagen
-Zustellungsverfolgung
+- Versand von E-Mails/SMS
+- Benachrichtigungsvorlagen
+- Zustellungsverfolgung
 
 #### Verantwortlichkeit
-Kommunikationskanal zu Kunden
-Personalisierte Nachrichten
-Opt-in Management
+- Kommunikationskanal zu Kunden
+- Personalisierte Nachrichten
+- Opt-in Management
 
 #### Schnittstellen
-http
-POST /api/notifications
-{
-  "type": "order_confirmation",
-  "userId": "usr_42",
-  "orderId": "ord_789",
-  "channel": "email"
-}
+    http
+    POST /api/notifications
+    {
+      "type": "order_confirmation",
+      "userId": "usr_42",
+      "orderId": "ord_789",
+      "channel": "email"
+    }
 
 #### Datenhaltung
-Cassandra: Skalierbare Speicherung von Sendelogs
-Keine Persistenz: Nachrichtenvorlagen im Code
-Temporal: Logs nach 90 Tagen automatisch gelöscht
+- Cassandra: Skalierbare Speicherung von Sendelogs
+- Keine Persistenz: Nachrichtenvorlagen im Code
+- Temporal: Logs nach 90 Tagen automatisch gelöscht
 
 # Aufgabe 2 - "Coding Produktkataloge" - Mario
 Erstellen Sie 2 weitere Microservice Produktkataloge:
