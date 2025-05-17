@@ -56,12 +56,6 @@ Zusätzlich zu den genannten Services wären sinnvoll:
 | Search-Service        | Produktsuche            | Volltextsuche, Filterung               |
 | Analytics-Service     | Geschäftsanalysen       | Verkaufsstatistiken                    |
 
-### Service 1
-#### Funktionalität
-#### Verantwortlichkeit (Business Capabilities)
-#### Schnittstellen (API inkl. Datenaustauschformate)
-#### Datenhaltung (Decentralized Data Management)
-
 ### Shopping-Service
 #### Funktionalität
 - Warenkorbverwaltung (Hinzufügen/Entfernen von Artikeln)
