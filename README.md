@@ -247,9 +247,43 @@ gegebenenfalls ein.
 
 # Aufgabe 4 - Viki/Julia
 (theoretische) Überlegungen zum Einsatz von Asynchronen Kommunikationsstilen in der Handelsplattform.
+
 https://microservices.io/patterns/communication-style/messaging.html
 
 ## Einsatz von Asynchronen Kommunikationsstilen
+
+### Synchrone vs. Asynchrone Kommunikation
+
+Synchrone Kommunikation - einfach, konsistent, unmittelbar
+Sender und Empfänger einer Nachricht sind gleichzeitig aktiv. Ist die gebräuchlichste Art der Interaktion bei Web-API's welche Protokelle wie HTTP oder RPC verwenden. 
+Stellen einer Anfrage -> Erhalten der Anfrage: Es kann gewährleistet werden, dass Daten aktuell und über alle Dienste hinweg konsistent sind. 
+Datenfluss ist wie ein Telefonanruf aufgebaut: Ein Dienst ruft einen anderen an - er wartet bis der andere Dienst abhebt. Davor kann er nicht weiterarbeiten!
+Nachteile: Koppelung, Latenz, Verfügbarkeit. Dienste werden durch Abhängigkeiten schwerer zu skalieren. Anfoderungen blockieren, Risiko für Time-Outs 
+
+Asynchrone Kommunikation - entkoppelt, flexibel, resilient
+Sender und Empfänger sind nicht gleichzeitig aktiv. Weniger gebräuchlich aber flexiblere Art der Kommunikation bei Web-API's, Protokolle wie AMQP oder MQTT. 
+Stellen der Anfrage -> Abholen der Anfrage: Dienste sind nicht abhängig von einander. Dienste sind flexibel skalierbar und ausfallssicherer. 
+Datenfluss ist wie eine Nachrichtendienst aufgebaut: Ein Dienst schickt eine Nachricht und der andere Dienst reagiert wenn er Zeit hat. Der Sender kann weiterarbeiten. 
+Nachteile: Komplexität, Inkonsistenzen, Latenz. Entwerfen, Testen und Debuggen wird aufwändiger, Kompromiss zwischen Zuverlässigkeit und Latenz. 
+
+### Anwendungsbeispiel aus der Plattform
+
+Order-Service -> Notification Service: 
+Bestellung wird erstellt und asynchron "abgeholt". Design for Failure Prinzip: Wenn einer der Dienste Offline ist kann der andere weiterarbeiten. 
+Order Service muss nicht auf Antwort warten, reduziert Antwortzeit für Benutzer und erhöht Systemgeschwindigkeit
+
+Payment-Service -> Order-Service
+Nach erfolgreicher Zahlung wird Bestellung freigegeben
+Fehlertoleranz erhöht sich - Zahlung erfolgreich und Order-Service nicht erreichbar: Könnte kritisch sein! 
+Bei asynchroner Kommunikation kein Problem, Nachricht wird später verarbeitet. 
+
+Analytics-Service
+Nutzungsdaten werden als Events an den Analytics Service weitergegeben, dieser konsumiert diese nur und ist dahingehend nicht abhängig. 
+Asynchrone Kommunikation durch bessere skalierbarkeit ist durch die potenziell große Anzahl von Events die bessere Wahl. 
+
+### Mögliche Technologien 
+
+RabbitMQ, Apache Kafka
 
 # Aufgabe 5 - Coding Paymentservice - Philipp
 Schreiben Sie ein zusätzliches „Paymentservice“. Dieses Payment-Service soll sowohl JSON, XML-Nachrichten als auch Nachrichten
@@ -269,6 +303,46 @@ http://www.enterpriseintegrationpatterns.com/patterns/messaging/CanonicalDataMod
 Recherchieren Sie dazu zusätzliche Patterns und Quellen
 
 ## PaymentService-Broker
+
+### Broker-Pattern
+Architekturprinzip, bei dem ein Vermittler (= "Broker") als Mittelschicht zwischen Client und Server fungiert. 
+Beteiligte kennen sich also nicht direkt sondern kommunizieren ausschließlich über Broker. 
+Vorteile: Lose Koppelung, Flexible Erweiterung (wenn zb. neue Payment Services integriert werden sollen muss der Shop nicht angepasst werden), zentralisierte Steuerung
+
+### Sinnhaftigkeit für Trading Plattform
+Unterschiedliche Payment-Servies die sich in Zukunft auch verändern können:
+Aktuell: Kreditkartenzahlung, Paypal, Vorauskasse, Rechnung
+Zukunft: Kryptowährungen
+Broker nimmt alle Anfragen entgegen und entscheidet anhand eines Sets von Regeln und Konfigurationen welches Payment-Service aufgerufen wird 
+
+### Message Broker (anhand des Redis-Beispiels)
+Ein Message Broker wie Redis Streams oder Kafka unterstützt asynchrone Kommunikation und erlaubt daher mehreren Clients (z.B. Payment-Services) auf Nachrichten reagieren zu können. 
+Entwurf eines Redis-basierter Payment-Broker:
+
+1. Broker publiziert Nachricht in Stream "payment_requests"
+2. Je nach Service-Verfügbarkeit oder Methode konsumiert der passende Service die Nachricht
+
+Vorteile laut Redis:
+
+- Asynchrone Verarbeitung
+- Automatische Wiederholung bei Fehlern
+- Entkopplung von Sender / Empfänger
+
+### Canonical Data Model (= CDM)
+Stellst sicher, dall alle Services ein einheitliches Format verwenden. Somit eine Art "Korsett" für die Daten
+Vorteile:
+- Vereinfachte Integration neuer Services
+- Klar definierte Kommunikation
+- Weniger Konvertierungslogik
+
+### Conclusio 
+Ein PaymentService-Broker in der Microservice-basierten Handelsplattform…
+
+…vermittelt intelligent zwischen verschiedenen Zahlungsdiensten
+…nutzt idealerweise einen Message-Broker für asynchrone, fehlertolerante Verarbeitung
+…arbeitet mit einem Canonical Data Model, um alle Services unabhängig und standardisiert anzusprechen
+…erlaubt einfache Erweiterbarkeit und bessere Skalierbarkeit im Zahlungssystem
+
 
 # Aufgabe 7 - Coding Webhook - Philipp
 Webhook-Subscriber: Überlegen und implementieren Sie ein mögliches Webhook-Szenario.
