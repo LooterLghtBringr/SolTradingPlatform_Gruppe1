@@ -371,3 +371,34 @@ Machen Sie sich mit dem Begriff „Open Data“ vertraut und beschreiben Sie die
 Beschreiben Sie außerdem mögliche Anwendungsfälle im Zusammenhang mit der Handelsplattform.
 
 ## Open Data
+Open Data bezeichnet frei zugängliche Daten, die von Organisationen, Regierungen oder Unternehmen öffentlich bereitgestellt werden und ohne rechtliche, technische oder
+finanzielle Beschränkungen genutzt, weiterverarbeitet und geteilt werden können. Diese Daten sind in der Regel in maschinenlesbaren Formaten verfügbar und folgen offenen
+Standards, um maximale Interoperabilität zu gewährleisten.
+
+Charakteristika sind:
+- Lizenzfreiheit (z. B. CC0, Creative Commons)
+- Offene Formate (CSV, JSON, XML)
+- Kostenfreier Zugang
+
+Mögliche Anwendungsfälle für Handelsplattformen:
+- Open Data kann Handelsplattformen erheblich bereichern, indem externe Datenquellen integriert werden. Wirtschaftsdaten von Statistikämtern können zur Marktanalyse und
+Trendvorhersage genutzt werden, während Wetterdaten besonders für Rohstoff- und Agrarmärkte relevant sind. Demografische Daten ermöglichen eine bessere Zielgruppensegmentierung und
+personalisierte Produktempfehlungen.
+
+- Verkehrsdaten können Logistikkosten optimieren und Lieferzeiten verbessern, während Geodaten standortbasierte Services und regionale Marktanalysen unterstützen. Wechselkurse und
+Finanzmarktdaten von Zentralbanken können für internationale Transaktionen und Risikobewertungen eingesetzt werden.
+
+- Zusätzlich können Open Data-Quellen die Compliance erleichtern, indem beispielsweise Sanktionslisten oder Handelsregulierungen automatisch abgeglichen werden. Die Integration von
+Open Data erhöht somit die Datenqualität, reduziert Kosten für proprietäre Datenquellen und ermöglicht innovative Services, die der Handelsplattform einen Wettbewerbsvorteil
+verschaffen können.
+
+Weitere Anwendungsfälle könnten sein:
+- Produktdatenbank - Nutzung offener Warenklassifikationen (z. B. UNSPSC) zur Standardisierung der Produktkategorien.
+
+- Marktanalysen - Integration öffentlicher Demografie-Daten (z. B. Statistik Austria) für zielgruppenspezifische Produktempfehlungen.
+
+- Preisbenchmarking - Vergleich mit offenen Preisindizes oder EU-weiten Handelsdaten zur dynamischen Preisoptimierung.
+
+- Nachhaltigkeitsbewertung - Einbindung von CO₂-Datenbanken (z. B. OpenFootprint) für Ökobilanzierungen.
+
+- Geodaten - Nutzung von OpenStreetMap für Lieferzeitenberechnungen oder Standortanalysen.
