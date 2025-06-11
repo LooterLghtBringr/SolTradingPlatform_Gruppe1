@@ -8,7 +8,7 @@ namespace IEGEasyCreditcardService
 		public static void Main(string[] args)
 		{
 			var builder = WebApplication.CreateBuilder(args);
-
+			
             builder.Logging.ClearProviders();
 			builder.Logging.AddCustomLogger();
 			builder.Logging.SetMinimumLevel(LogLevel.Critical);
@@ -30,7 +30,7 @@ namespace IEGEasyCreditcardService
 			app.UseAuthorization();
 
 			app.MapControllers();
-
+			
 			app.Run();
 		}
 	}

@@ -27,10 +27,10 @@ namespace IEGEasyCreditcardService.Controllers
         [HttpGet("status")]
         public IActionResult TriggerError()
         {
-            if (_random.Next(1, 5) == 1)
+            if (_random.Next(1, 3) == 1)
             {
                 _logger.LogError("Simulated failure.");
-                throw new Exception("Random failure occurred.");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Simulated failure.");
             }
 
             return Ok("IEGEasyCreditcardService is running");
