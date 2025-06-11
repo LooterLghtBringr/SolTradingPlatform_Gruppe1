@@ -20,6 +20,7 @@ namespace GrpcService
 
             builder.WebHost
                 .ConfigureKestrel(options => { options.ListenLocalhost(5000, o => o.Protocols = HttpProtocols.Http2); })   // Setup a HTTP/2 endpoint without TLS.
+                .ConfigureLogging(logging => { logging.AddSerilog(logger); })
                 .ConfigureServices(services => { services.AddHttpContextAccessor(); })
 ;
 

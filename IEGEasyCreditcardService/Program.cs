@@ -1,6 +1,5 @@
 using IEGEasyCreditcardService.Protos;
 using IEGEasyCreditcardService.Services;
-using Serilog;
 
 namespace IEGEasyCreditcardService
 {
@@ -10,13 +9,9 @@ namespace IEGEasyCreditcardService
 		{
 			var builder = WebApplication.CreateBuilder(args);
 
-			var logger = new LoggerConfiguration()
-              .Enrich.FromLogContext()
-			  .WriteTo.gRPC("http://localhost:5000")
-              .CreateLogger();
-
             builder.Logging.ClearProviders();
-            builder.Logging.AddSerilog(logger);
+			builder.Logging.AddCustomLogger();
+			builder.Logging.SetMinimumLevel(LogLevel.Critical);
 
             builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -25,7 +20,7 @@ namespace IEGEasyCreditcardService
 
 			builder.Services.AddScoped<ICreditcardValidator, CreditcardValidator>();
 
-			var app = builder.Build();
+            var app = builder.Build();
 
 			app.UseSwagger();
 			app.UseSwaggerUI();
