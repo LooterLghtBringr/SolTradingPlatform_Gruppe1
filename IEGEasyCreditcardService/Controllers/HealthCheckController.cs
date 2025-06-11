@@ -29,7 +29,8 @@ namespace IEGEasyCreditcardService.Controllers
         {
             if (_random.Next(1, 3) == 1)
             {
-                _logger.LogError("Simulated failure.");
+                var request = this.Request;
+                _logger.LogError($"{request.Host}: Simulated failure.");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Simulated failure.");
             }
 
