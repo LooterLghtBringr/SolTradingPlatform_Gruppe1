@@ -11,7 +11,7 @@ namespace MeiShop.Controllers
     {
         //https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client
         private readonly ILogger<PaymentMethodsController> _logger;
-        private static readonly string creditcardServiceBaseAddress = "https://localhost:7231/";
+        private static readonly string creditcardServiceBaseAddress = "https://localhost:5003/";
 
 
         public PaymentMethodsController(ILogger<PaymentMethodsController> logger)
