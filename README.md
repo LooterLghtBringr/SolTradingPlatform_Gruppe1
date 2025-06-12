@@ -16,7 +16,7 @@ Fokus: Integration von „elektronischen (Geschäfts)-Prozessen“ und Microserv
 Nehmen Sie in Ihrer Ausführung auch Bezug auf die im Artikel „Microservices a definition of this new architectural term“
 (Microservices - https://martinfowler.com/articles/microservices.html) beschriebenen Konzepte.
 
-# Aufgabe 1b - Mario/Philipp
+# Aufgabe 1b - TODO: implementierte Microservices beschreiben (Funktionalität, Schnittstellen, Datenaustaschformate, Datenhaltung)
 Beschreiben Sie zuerst den Ansatz „Domain-Driven Design (DDD) im Zusammenhang mit Microservices.
 Überlegen Sie welche weiteren Microservices in Zusammenhang mit der Trading Platform sinnvoll wären.
 Beschreiben Sie danach die Funktionalitäten / Verantwortlichkeiten der einzelnen Microservices – Stichwort: Business Capabilities
@@ -219,7 +219,7 @@ Zusätzlich zu den genannten Services wären sinnvoll:
 - Keine Persistenz: Nachrichtenvorlagen im Code
 - Temporal: Logs nach 90 Tagen automatisch gelöscht
 
-# Aufgabe 2 - "Coding Produktkataloge" - Mario
+# Aufgabe 2 - "Coding Produktkataloge"
 Erstellen Sie 2 weitere Microservice Produktkataloge:
 Erstellen Sie ein Microservice, welches eine Liste von Produkten anbietet.
 Der Inhalt der Liste soll dabei aus einem „microservice local datastore“ kommen – (Decentralized Data Management).
@@ -235,7 +235,7 @@ eine REST-API abgerufen werden. Der Microservice implementiert grundlegende CRUD
 Dieser Microservice stellt eine Liste von Produkten bereit, die in einer Sqlite-Datenbank gespeichert sind. Die Datenbank wird lokal im Microservice gespeichert und kann über
 eine REST-API abgerufen werden.
 
-# Aufgabe 3 - Coding (retry, zentrales Logging-Service, Fallback) - Philipp
+# Aufgabe 3 - Coding (retry, zentrales Logging-Service, Fallback) - TODO: kurze beschreibung
 Skalierung, Ausfallssicherheit und Logging (Design for failure) für CreditPaymentService. Detailsbeschreibung:
 Publizieren Sie das Service „IEGEasyCreditCardService“ mehrfach und rufen Sie die Services im „Round Robin“ Stil auf.
 Falls es beim Aufruf eines Service zu einem Fehler kommt, soll es eine Retry-Logik geben, außerdem soll der aufgetretene Fehler
@@ -245,7 +245,7 @@ gegebenenfalls ein.
 
 ## Skalierung, Ausfallssicherheit und Logging für CreditPaymentService
 
-# Aufgabe 4 - Viki/Julia
+# Aufgabe 4 - Ansynchrone Kommunikation
 (theoretische) Überlegungen zum Einsatz von Asynchronen Kommunikationsstilen in der Handelsplattform.
 
 https://microservices.io/patterns/communication-style/messaging.html
@@ -285,7 +285,7 @@ Asynchrone Kommunikation durch bessere skalierbarkeit ist durch die potenziell g
 
 RabbitMQ, Apache Kafka
 
-# Aufgabe 5 - Coding Paymentservice - Philipp
+# Aufgabe 5 - Coding Paymentservice - TODO: kurze beschreibung
 Schreiben Sie ein zusätzliches „Paymentservice“. Dieses Payment-Service soll sowohl JSON, XML-Nachrichten als auch Nachrichten
 im Format CSV verarbeiten und erzeugen können. Orientieren Sie sich an dem Pattern - HTTP Content Negotiation in
 REST APIs (restfulapi.net)
@@ -344,19 +344,19 @@ Ein PaymentService-Broker in der Microservice-basierten Handelsplattform…
 …erlaubt einfache Erweiterbarkeit und bessere Skalierbarkeit im Zahlungssystem
 
 
-# Aufgabe 7 - Coding Webhook - Philipp
+# Aufgabe 7 - Coding Webhook - TODO: kurze beschreibung
 Webhook-Subscriber: Überlegen und implementieren Sie ein mögliches Webhook-Szenario.
 
 ## Webhook-Subscriber
 
-# Aufgabe 8 - Coding OData - Mario
+# Aufgabe 8 - Coding OData
 Machen Sie sich mit dem Begriff OData vertraut. Überlegen und implementieren Sie ein mögliches OData (Service & Client)-Szenario.
 
 ## OData (Service & Client)-Szenario
 In dem Microservice ProductCatalogJson wurde OData implementiert. Die Produkte werden als QueryableCollection bereitgestellt und
 es werden im ODataClient (Console Application) exemplarisch 3 Abfragen durchgeführt und ausgegeben.
 
-# Aufgabe 9 - Coding SAGA-Pattern - Mario
+# Aufgabe 9 - Coding SAGA-Pattern
 Machen Sie sich mit dem Begriff SAGA-Pattern vertraut. Überlegen und implementieren Sie ein mögliches SAGA-Pattern
 Szenario(Service & Client)-Szenario
 
@@ -366,7 +366,7 @@ Umgang mit Ausfallsicherheit –Stichwort: Design for failure / Resilient Softwa
 Das SAGA Pattern wurde im Microservice PaymentService implementiert. Es werden zwei Endpunkte bereitgestellt (ReservePayment und CompensatePayment).
 Diese Endpunkte sind für die Reservierung und Kompensation von Zahlungen zuständig.
 
-# Aufgabe 10 - Viki/Julia
+# Aufgabe 10 - Open Data
 Machen Sie sich mit dem Begriff „Open Data“ vertraut und beschreiben Sie diesen in einigen wenigen Sätzen.
 Beschreiben Sie außerdem mögliche Anwendungsfälle im Zusammenhang mit der Handelsplattform.
 
