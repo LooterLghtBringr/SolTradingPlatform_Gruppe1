@@ -39,10 +39,10 @@ Microservices setzen DDD-Prinzipien ideal um:
 -Autonome Teams pro Service (Conway’s Law)
 -Decentralized Data Management (jeder Service verwaltet seine Daten selbst)
 
-Vorteile:
-✅ Klare Trennung der Verantwortlichkeiten
-✅ Unabhängige Skalierbarkeit
-✅ Technologische Freiheit pro Service
+Vorteile:  
+✅ Klare Trennung der Verantwortlichkeiten  
+✅ Unabhängige Skalierbarkeit  
+✅ Technologische Freiheit pro Service  
 
 ## Weitere Microservices
 
@@ -292,7 +292,7 @@ REST APIs (restfulapi.net)
 
 ## PaymentService
 
-# Aufgabe 6 - Viki/Julia
+# Aufgabe 6 - (theoretische) Überlegungen zu einem PaymentService-Broker
 (theoretische) Überlegungen zu einem PaymentService-Broker. Dieses Service soll zwischen Shops und Payment-Services „vermitteln“.
 
 Mögliche Info-Quellen:
