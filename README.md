@@ -320,19 +320,43 @@ https://microservices.io/patterns/communication-style/messaging.html
 
 ### Synchrone vs. Asynchrone Kommunikation
 
-Synchrone Kommunikation - einfach, konsistent, unmittelbar
+#### Synchrone Kommunikation - einfach, konsistent, unmittelbar
 Sender und Empfänger einer Nachricht sind gleichzeitig aktiv. Ist die gebräuchlichste Art der Interaktion bei Web-API's welche Protokelle wie HTTP oder RPC verwenden. 
 Stellen einer Anfrage -> Erhalten der Anfrage: Es kann gewährleistet werden, dass Daten aktuell und über alle Dienste hinweg konsistent sind. 
 Datenfluss ist wie ein Telefonanruf aufgebaut: Ein Dienst ruft einen anderen an - er wartet bis der andere Dienst abhebt. Davor kann er nicht weiterarbeiten!
-Nachteile: Koppelung, Latenz, Verfügbarkeit. Dienste werden durch Abhängigkeiten schwerer zu skalieren. Anfoderungen blockieren, Risiko für Time-Outs 
 
-Asynchrone Kommunikation - entkoppelt, flexibel, resilient
+- Nachteile: Koppelung, Latenz, Verfügbarkeit. Dienste werden durch Abhängigkeiten schwerer zu skalieren. Anfoderungen blockieren, Risiko für Time-Outs 
+
+#### Asynchrone Kommunikation - entkoppelt, flexibel, resilient
 Sender und Empfänger sind nicht gleichzeitig aktiv. Weniger gebräuchlich aber flexiblere Art der Kommunikation bei Web-API's, Protokolle wie AMQP oder MQTT. 
 Stellen der Anfrage -> Abholen der Anfrage: Dienste sind nicht abhängig von einander. Dienste sind flexibel skalierbar und ausfallssicherer. 
-Datenfluss ist wie eine Nachrichtendienst aufgebaut: Ein Dienst schickt eine Nachricht und der andere Dienst reagiert wenn er Zeit hat. Der Sender kann weiterarbeiten. 
-Nachteile: Komplexität, Inkonsistenzen, Latenz. Entwerfen, Testen und Debuggen wird aufwändiger, Kompromiss zwischen Zuverlässigkeit und Latenz. 
+Datenfluss ist wie ein Nachrichtendienst aufgebaut: Ein Dienst schickt eine Nachricht und der andere Dienst reagiert wenn er Zeit hat. Der Sender kann weiterarbeiten. 
 
-### Anwendungsbeispiel aus der Plattform - TODO: kurze beschreibung
+- Nachteile: Komplexität, Inkonsistenzen, Latenz. Entwerfen, Testen und Debuggen wird aufwändiger, Kompromiss zwischen Zuverlässigkeit und Latenz. 
+
+### Anwendungsbeispiel aus der Plattform
+
+#### Entkopplung und Autonomie der Microservices:
+
+Vermeidung von direkten Abhängigkeiten: Bei synchroner Kommunikation ist ein aufrufender Microservice direkt an die Verfügbarkeit und Antwortzeit des aufgerufenen Microservice gebunden.
+Fällt der aufgerufene Service aus oder reagiert langsam, kann dies zu Kaskadenfehlern im gesamten System führen.
+Asynchrone Kommunikation (z.B. über Message Queues oder Event Streams) entkoppelt Sender und Empfänger.
+Der Sender muss nicht auf eine sofortige Antwort warten, und der Empfänger kann die Nachricht verarbeiten, sobald er dazu bereit ist.
+
+- Beispiel in der Handelsplattform:
+    - Der Shopping-Microservice könnte eine Nachricht "Bestellung aufgegeben" in eine Message Queue senden, anstatt direkt den Bezahl-Microservice synchron aufzurufen. Der Bezahl-Microservice holt die Nachricht ab und verarbeitet die Zahlung unabhängig.
+    - Ein Rating-Microservice könnte auf "Bestellung abgeschlossen"-Events reagieren, die von einem Bestellverwaltungsdienst asynchron veröffentlicht werden.
+
+#### Erhöhte Ausfallsicherheit und Robustheit (Resilience):
+
+Pufferung von Anfragen: Messaging-Systeme fungieren als Puffer. Wenn ein Downstream-Service überlastet ist oder ausfällt, können Nachrichten in der Queue verbleiben und verarbeitet werden,
+sobald der Service wieder verfügbar ist. Dies verhindert Datenverluste und Stau in den vorangehenden Services.
+Retry-Mechanismen: Asynchrone Nachrichten können, falls die erste Verarbeitung fehlschlägt, automatisch wiederholt werden, ohne dass der ursprüngliche Sender erneut senden muss.
+Dies ist besonders wichtig für kritische Prozesse wie Zahlungen.
+
+- Beispiel in der Handelsplattform:
+    - Fällt der Währungsrechner-Microservice temporär aus, können Anfragen für Währungsumrechnungen, die über eine Message Queue gesendet wurden, gespeichert und verarbeitet werden, sobald der Dienst wieder online ist. Synchron wäre dies ein sofortiger Fehler für den aufrufenden Dienst.
+    - Eine fehlgeschlagene Zahlung durch den Bezahl-Microservice könnte eine Nachricht an einen "Fehlerbehandlungs-Microservice" senden, der dann über Wiederholungsversuche oder manuelle Intervention entscheidet.
 
 ### Mögliche Technologien 
 
