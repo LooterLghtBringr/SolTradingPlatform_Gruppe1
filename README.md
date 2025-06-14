@@ -16,6 +16,19 @@ Fokus: Integration von „elektronischen (Geschäfts)-Prozessen“ und Microserv
 Nehmen Sie in Ihrer Ausführung auch Bezug auf die im Artikel „Microservices a definition of this new architectural term“
 (Microservices - https://martinfowler.com/articles/microservices.html) beschriebenen Konzepte.
 
+## Teambezeichnung & Teammitglieder:
+
+Gruppe 1: SolTradingPlatform
+
+| Vorname               | Nachname                |
+|:----------------------|:------------------------|
+| Viktoria Marie        | Haas                    |
+| Julia Maria           | Hermann                 |
+| Philipp               | Purgaj                  |
+| Mario                 | Skedelj                 |
+
+---------------------------------------------------------
+
 # Aufgabe 1b - Domain-Driven Design (DDD) im Zusammenhang mit Microservices
 Beschreiben Sie zuerst den Ansatz „Domain-Driven Design (DDD) im Zusammenhang mit Microservices.
 Überlegen Sie welche weiteren Microservices in Zusammenhang mit der Trading Platform sinnvoll wären.
@@ -26,6 +39,8 @@ https://learn.microsoft.com/en-us/archive/msdn-magazine/2009/february/best-pract
 Erstellen Sie eine Detailbeschreibung der angebotenen Schnittstellen inkl. Datenaustauschformate
 
 Erstellen Sie eine Detailbeschreibung der Datenhaltung – Stichwort: Decentralized Data Management
+
+---------------------------------------------------------
 
 ## Domain-Driven Design (im Zusammenhang mit Microservices)
 
@@ -219,6 +234,8 @@ Zusätzlich zu den genannten Services wären sinnvoll:
 - Keine Persistenz: Nachrichtenvorlagen im Code
 - Temporal: Logs nach 90 Tagen automatisch gelöscht
 
+---------------------------------------------------------
+
 # Aufgabe 2 - "Coding Produktkataloge"
 Erstellen Sie 2 weitere Microservice Produktkataloge:
 Erstellen Sie ein Microservice, welches eine Liste von Produkten anbietet.
@@ -226,6 +243,8 @@ Der Inhalt der Liste soll dabei aus einem „microservice local datastore“ kom
 Ersetzen Sie die hard codierten Werte im MeiShop/ProductList-Controller durch den Aufruf des soeben erstellen Services.
 Ein weiterer Produktkatalog-Service soll Produkte aus einem Text File auf einem FTP-Server auslesen oder einem anderen geeigneten
 Persistencestore und zur Verfügung stellen.
+
+---------------------------------------------------------
 
 ## Microservice ProductCatalogJson - Produkte aus JSON-Datei
 Dieser Microservice stellt eine Liste von Produkten bereit, die in einer JSON-Datei gespeichert sind. Die JSON-Datei wird lokal im Microservice gespeichert und kann über
@@ -252,6 +271,8 @@ eine REST-API abgerufen werden. SQLite DB wird mit DB Broswer erstellt und verwa
 ### Endpoints
 - Get /api/products - Gibt eine Liste aller Produkte in der DB zurück
 
+---------------------------------------------------------
+
 # Aufgabe 3 - Coding (retry, zentrales Logging-Service, Fallback) - TODO: kurze beschreibung
 Skalierung, Ausfallssicherheit und Logging (Design for failure) für CreditPaymentService. Detailsbeschreibung:
 Publizieren Sie das Service „IEGEasyCreditCardService“ mehrfach und rufen Sie die Services im „Round Robin“ Stil auf.
@@ -260,12 +281,18 @@ mit Hilfe eines zentralen Logging-Service (gRPC) protokolliert werden. Nach n er
 aufgerufen werden. Recherchieren Sie zusätzlich nach einem geeigneten Framework und Skalierungsmöglichkeiten setzen Sie dieses
 gegebenenfalls ein.
 
+---------------------------------------------------------
+
 ## Skalierung, Ausfallssicherheit und Logging für CreditPaymentService
+
+---------------------------------------------------------
 
 # Aufgabe 4 - Ansynchrone Kommunikation
 (theoretische) Überlegungen zum Einsatz von Asynchronen Kommunikationsstilen in der Handelsplattform.
 
 https://microservices.io/patterns/communication-style/messaging.html
+
+---------------------------------------------------------
 
 ## Einsatz von Asynchronen Kommunikationsstilen
 
@@ -289,12 +316,16 @@ Nachteile: Komplexität, Inkonsistenzen, Latenz. Entwerfen, Testen und Debuggen 
 
 RabbitMQ, Apache Kafka
 
+---------------------------------------------------------
+
 # Aufgabe 5 - Coding Paymentservice - TODO: kurze beschreibung
 Schreiben Sie ein zusätzliches „Paymentservice“. Dieses Payment-Service soll sowohl JSON, XML-Nachrichten als auch Nachrichten
 im Format CSV verarbeiten und erzeugen können. Orientieren Sie sich an dem Pattern - HTTP Content Negotiation in
 REST APIs (restfulapi.net)
 
 ## PaymentService
+
+---------------------------------------------------------
 
 # Aufgabe 6 - (theoretische) Überlegungen zu einem PaymentService-Broker
 (theoretische) Überlegungen zu einem PaymentService-Broker. Dieses Service soll zwischen Shops und Payment-Services „vermitteln“.
@@ -305,6 +336,8 @@ https://redis.io/solutions/message-broker-pattern-for-microservices-interservice
 http://www.enterpriseintegrationpatterns.com/patterns/messaging/CanonicalDataModel.html
  
 Recherchieren Sie dazu zusätzliche Patterns und Quellen
+
+---------------------------------------------------------
 
 ## PaymentService-Broker
 
@@ -347,18 +380,27 @@ Ein PaymentService-Broker in der Microservice-basierten Handelsplattform…
 …arbeitet mit einem Canonical Data Model, um alle Services unabhängig und standardisiert anzusprechen
 …erlaubt einfache Erweiterbarkeit und bessere Skalierbarkeit im Zahlungssystem
 
+---------------------------------------------------------
 
 # Aufgabe 7 - Coding Webhook - TODO: kurze beschreibung
 Webhook-Subscriber: Überlegen und implementieren Sie ein mögliches Webhook-Szenario.
 
+---------------------------------------------------------
+
 ## Webhook-Subscriber
+
+---------------------------------------------------------
 
 # Aufgabe 8 - Coding OData
 Machen Sie sich mit dem Begriff OData vertraut. Überlegen und implementieren Sie ein mögliches OData (Service & Client)-Szenario.
 
+---------------------------------------------------------
+
 ## OData (Service & Client)-Szenario
 In dem Microservice ProductCatalogJson wurde OData implementiert. Die Produkte werden als QueryableCollection bereitgestellt und
 es werden im ODataClient (Console Application) exemplarisch 3 Abfragen durchgeführt und ausgegeben.
+
+---------------------------------------------------------
 
 # Aufgabe 9 - Coding SAGA-Pattern
 Machen Sie sich mit dem Begriff SAGA-Pattern vertraut. Überlegen und implementieren Sie ein mögliches SAGA-Pattern
@@ -366,13 +408,19 @@ Szenario(Service & Client)-Szenario
 
 Umgang mit Ausfallsicherheit –Stichwort: Design for failure / Resilient Software Design
 
+---------------------------------------------------------
+
 ## SAGA-Pattern (Service & Client)-Szenario
 Das SAGA Pattern wurde im Microservice PaymentService implementiert. Es werden zwei Endpunkte bereitgestellt (ReservePayment und CompensatePayment).
 Diese Endpunkte sind für die Reservierung und Kompensation von Zahlungen zuständig.
 
+---------------------------------------------------------
+
 # Aufgabe 10 - Open Data
 Machen Sie sich mit dem Begriff „Open Data“ vertraut und beschreiben Sie diesen in einigen wenigen Sätzen.
 Beschreiben Sie außerdem mögliche Anwendungsfälle im Zusammenhang mit der Handelsplattform.
+
+---------------------------------------------------------
 
 ## Open Data
 Open Data bezeichnet frei zugängliche Daten, die von Organisationen, Regierungen oder Unternehmen öffentlich bereitgestellt werden und ohne rechtliche, technische oder
