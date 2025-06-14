@@ -273,7 +273,7 @@ eine REST-API abgerufen werden. SQLite DB wird mit DB Broswer erstellt und verwa
 
 ---------------------------------------------------------
 
-# Aufgabe 3 - Coding (retry, zentrales Logging-Service, Fallback) - TODO: kurze beschreibung
+# Aufgabe 3 - Coding (retry, zentrales Logging-Service, Fallback)
 Skalierung, Ausfallssicherheit und Logging (Design for failure) für CreditPaymentService. Detailsbeschreibung:
 Publizieren Sie das Service „IEGEasyCreditCardService“ mehrfach und rufen Sie die Services im „Round Robin“ Stil auf.
 Falls es beim Aufruf eines Service zu einem Fehler kommt, soll es eine Retry-Logik geben, außerdem soll der aufgetretene Fehler
