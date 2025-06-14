@@ -354,7 +354,7 @@ REST APIs (restfulapi.net)
     - POST https://localhost:7035/Payment/AddPayment
     - Body: 
   ```json
-     {
+{
   "date": "2022-02-02",
   "id": 1337,
   "payee": "Test",
@@ -379,7 +379,7 @@ REST APIs (restfulapi.net)
     - Body:
   ```csv
   Payee,Amount
-  Hansk,166
+  Hansi,166
   ```
 5. Check with GET https://localhost:7035/Payment/GetPayment
 
