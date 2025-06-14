@@ -1,15 +1,35 @@
-﻿namespace PaymentService.Models
+﻿using System.Xml.Serialization;
+
+namespace PaymentService.Models
 {
+    [XmlRoot("Payment")]
     public class Payment
     {
+        [XmlIgnore]
         public DateOnly Date { get; set; }
+
+        [XmlElement(ElementName = "OnlyTheDate", DataType = "date")]
+        internal string OnlyTheDataSurrogate
+        {
+            get { return Date.ToString("yyyy-MM-dd"); }
+            set { Date = DateOnly.Parse(value); }
+        }
+
+        [XmlElement("Id")]
         public int Id { get; set; }
-        public required string Payee { get; set; }
+
+        [XmlElement("Payee")]
+        public string Payee { get; set; }
+
+        [XmlElement("Amount")]
         public decimal Amount { get; set; }
 
-		//SAGA relevante Attribute
-		public Guid? SagaId { get; set; }
-		public bool IsReserved { get; set; } = false;
+        //SAGA relevante Attribute
+        [XmlElement("SagaId")]
+        public Guid? SagaId { get; set; }
+
+        [XmlElement("IsReserved")]
+        public bool IsReserved { get; set; } = false;
 	}
 
 	public class PaymentReservationRequest
