@@ -231,9 +231,26 @@ Persistencestore und zur Verfügung stellen.
 Dieser Microservice stellt eine Liste von Produkten bereit, die in einer JSON-Datei gespeichert sind. Die JSON-Datei wird lokal im Microservice gespeichert und kann über
 eine REST-API abgerufen werden. Der Microservice implementiert grundlegende CRUD-Operationen (Create, Read, Update, Delete) für die Produkte.
 
+### Endpoints
+- Get /api/products - Gibt eine Liste aller Produkte zurück
+- Post /api/products - Product wird im Body übergeben - Fügt ein neues Produkt hinzu
+
+    - Product JSON:
+
+          {
+          "Id": 1,
+          "Name": "Wireless Bluetooth Headphones"
+          }
+
+- Put /api/products/{id} - Product wird im Body übergeben - Aktualisiert ein bestehendes Produkt
+- Delete /api/products/{id} - Löscht ein Produkt anhand der ID
+
 ## Microservice ProductCatalogSqlite - Produkte aus Sqlite-Datenbank
 Dieser Microservice stellt eine Liste von Produkten bereit, die in einer Sqlite-Datenbank gespeichert sind. Die Datenbank wird lokal im Microservice gespeichert und kann über
-eine REST-API abgerufen werden.
+eine REST-API abgerufen werden. SQLite DB wird mit DB Broswer erstellt und verwaltet.
+
+### Endpoints
+- Get /api/products - Gibt eine Liste aller Produkte in der DB zurück
 
 # Aufgabe 3 - Coding (retry, zentrales Logging-Service, Fallback) - TODO: kurze beschreibung
 Skalierung, Ausfallssicherheit und Logging (Design for failure) für CreditPaymentService. Detailsbeschreibung:
@@ -266,20 +283,7 @@ Stellen der Anfrage -> Abholen der Anfrage: Dienste sind nicht abhängig von ein
 Datenfluss ist wie eine Nachrichtendienst aufgebaut: Ein Dienst schickt eine Nachricht und der andere Dienst reagiert wenn er Zeit hat. Der Sender kann weiterarbeiten. 
 Nachteile: Komplexität, Inkonsistenzen, Latenz. Entwerfen, Testen und Debuggen wird aufwändiger, Kompromiss zwischen Zuverlässigkeit und Latenz. 
 
-### Anwendungsbeispiel aus der Plattform
-
-Order-Service -> Notification Service: 
-Bestellung wird erstellt und asynchron "abgeholt". Design for Failure Prinzip: Wenn einer der Dienste Offline ist kann der andere weiterarbeiten. 
-Order Service muss nicht auf Antwort warten, reduziert Antwortzeit für Benutzer und erhöht Systemgeschwindigkeit
-
-Payment-Service -> Order-Service
-Nach erfolgreicher Zahlung wird Bestellung freigegeben
-Fehlertoleranz erhöht sich - Zahlung erfolgreich und Order-Service nicht erreichbar: Könnte kritisch sein! 
-Bei asynchroner Kommunikation kein Problem, Nachricht wird später verarbeitet. 
-
-Analytics-Service
-Nutzungsdaten werden als Events an den Analytics Service weitergegeben, dieser konsumiert diese nur und ist dahingehend nicht abhängig. 
-Asynchrone Kommunikation durch bessere skalierbarkeit ist durch die potenziell große Anzahl von Events die bessere Wahl. 
+### Anwendungsbeispiel aus der Plattform - TODO: kurze beschreibung
 
 ### Mögliche Technologien 
 
