@@ -16,7 +16,7 @@ Fokus: Integration von „elektronischen (Geschäfts)-Prozessen“ und Microserv
 Nehmen Sie in Ihrer Ausführung auch Bezug auf die im Artikel „Microservices a definition of this new architectural term“
 (Microservices - https://martinfowler.com/articles/microservices.html) beschriebenen Konzepte.
 
-# Aufgabe 1b - TODO: implementierte Microservices beschreiben (Funktionalität, Schnittstellen, Datenaustaschformate, Datenhaltung)
+# Aufgabe 1b - Domain-Driven Design (DDD) im Zusammenhang mit Microservices
 Beschreiben Sie zuerst den Ansatz „Domain-Driven Design (DDD) im Zusammenhang mit Microservices.
 Überlegen Sie welche weiteren Microservices in Zusammenhang mit der Trading Platform sinnvoll wären.
 Beschreiben Sie danach die Funktionalitäten / Verantwortlichkeiten der einzelnen Microservices – Stichwort: Business Capabilities
