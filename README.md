@@ -306,6 +306,8 @@ Der Client wechselt zum nächsten Service mit dem Port 5002, der verfügbar ist 
 Falls ein Fehler auftritt, wird dieser ebenfalls geloggt und der Client wechselt zum nächsten Service mit dem Port 5003. 
 Dieser Service ist wiederum verfügbar und das gleiche Szenario wird durchlaufen.
 
+Alle Log-Einträge werden in einer Datei im Ordner Logs im Solution Ordner gespeichert.
+
 
 ---------------------------------------------------------
 
@@ -446,6 +448,23 @@ Webhook-Subscriber: Überlegen und implementieren Sie ein mögliches Webhook-Sze
 ---------------------------------------------------------
 
 ## Webhook-Subscriber
+
+1. Starte den Service „PaymentService (https)“, „WebhookService (https)“ und „GrpcService (http)“.
+2. POST https://localhost:7035/Payment/AddPayment mit Body:
+     ```json
+        {
+          "date": "2025-01-01",
+          "id": 3,
+          "payee": "Seppl",
+          "amount": 100,
+          "sagaId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "isReserved": true
+        }
+        ```
+3. WebhookService empfängt die Benachrichtigung und verarbeitet sie.
+   - GET https://localhost:7294/api/webhook/GetTotal - Gibt die Summe aller empfangenen Zahlungen zurück.
+   - Konsolenfenster zeigt die empfangenen Zahlungen an.
+
 
 ---------------------------------------------------------
 
