@@ -460,7 +460,7 @@ Webhook-Subscriber: Überlegen und implementieren Sie ein mögliches Webhook-Sze
           "sagaId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
           "isReserved": true
         }
-        ```
+     ```
 3. WebhookService empfängt die Benachrichtigung und verarbeitet sie.
    - GET https://localhost:7294/api/webhook/GetTotal - Gibt die Summe aller empfangenen Zahlungen zurück.
    - Konsolenfenster zeigt die empfangenen Zahlungen an.
