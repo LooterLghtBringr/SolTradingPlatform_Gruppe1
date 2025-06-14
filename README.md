@@ -283,7 +283,29 @@ gegebenenfalls ein.
 
 ---------------------------------------------------------
 
-## Skalierung, Ausfallssicherheit und Logging für CreditPaymentService
+## Fault Szenario
+
+In diesem Szenario wird kontinuierlich der Zustand der Dienste mithilfe eines Round-Robin-Client-Pools und einer robusten Wiederholungsrichtlinie überprüft.
+Bei wiederholten Fehlern wechselt sie automatisch zum nächsten Client, um die Zuverlässigkeit des Dienstes aufrechtzuerhalten. Ereignisse werden in einem File mitgeloggt.
+
+1. Starte den Service „IEGEasyCreditCardService“ und "GrpcService"
+2. In Visual Studio: 
+   - Tools --> Command Line --> Developer Command Prompt
+   - Wechsle in den Ordner des CreditPaymentService-Projekts:
+     ```bash
+     cd IEGEasyCreditcardService\bin\Debug\net9.0 
+     ```
+   - Füge folgende Zeile ein, um den Service zu starten:
+     ```bash
+     dotnet IEGEasyCreditcardService.dll --urls "https://localhost:5002"
+     ```
+3. Starte FaultOrchestrator
+
+Als erstes wird der Service mit dem Port 5001 aufgerufen. Dieser Service ist nicht verfügbar und es wird ein Fehler geloggt.
+Der Client wechselt zum nächsten Service mit dem Port 5002, der verfügbar ist und es tritt mit einer Wahrscheinlichkeit von 33% ein Fehler auf.
+Falls ein Fehler auftritt, wird dieser ebenfalls geloggt und der Client wechselt zum nächsten Service mit dem Port 5003. 
+Dieser Service ist wiederum verfügbar und das gleiche Szenario wird durchlaufen.
+
 
 ---------------------------------------------------------
 

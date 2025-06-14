@@ -13,7 +13,7 @@
 
             var faultOrchestrator = new FaultOrchestrator(serviceUrls);
 
-            await faultOrchestrator.Start(5);
+            await faultOrchestrator.Start();
 
             Console.WriteLine("Fault Orchestrator has completed its execution.");
             Console.ReadKey();
