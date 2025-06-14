@@ -273,7 +273,7 @@ eine REST-API abgerufen werden. SQLite DB wird mit DB Broswer erstellt und verwa
 
 ---------------------------------------------------------
 
-# Aufgabe 3 - Coding (retry, zentrales Logging-Service, Fallback) - TODO: kurze beschreibung
+# Aufgabe 3 - Coding (retry, zentrales Logging-Service, Fallback) 
 Skalierung, Ausfallssicherheit und Logging (Design for failure) für CreditPaymentService. Detailsbeschreibung:
 Publizieren Sie das Service „IEGEasyCreditCardService“ mehrfach und rufen Sie die Services im „Round Robin“ Stil auf.
 Falls es beim Aufruf eines Service zu einem Fehler kommt, soll es eine Retry-Logik geben, außerdem soll der aufgetretene Fehler
@@ -288,7 +288,7 @@ gegebenenfalls ein.
 In diesem Szenario wird kontinuierlich der Zustand der Dienste mithilfe eines Round-Robin-Client-Pools und einer robusten Wiederholungsrichtlinie überprüft.
 Bei wiederholten Fehlern wechselt sie automatisch zum nächsten Client, um die Zuverlässigkeit des Dienstes aufrechtzuerhalten. Ereignisse werden in einem File mitgeloggt.
 
-1. Starte den Service „IEGEasyCreditCardService“ und "GrpcService"
+1. Starte den Service „IEGEasyCreditCardService (https)“ und "GrpcService (http)"
 2. In Visual Studio: 
    - Tools --> Command Line --> Developer Command Prompt
    - Wechsle in den Ordner des CreditPaymentService-Projekts:
@@ -340,12 +340,48 @@ RabbitMQ, Apache Kafka
 
 ---------------------------------------------------------
 
-# Aufgabe 5 - Coding Paymentservice - TODO: kurze beschreibung
+# Aufgabe 5 - Coding Paymentservice 
 Schreiben Sie ein zusätzliches „Paymentservice“. Dieses Payment-Service soll sowohl JSON, XML-Nachrichten als auch Nachrichten
 im Format CSV verarbeiten und erzeugen können. Orientieren Sie sich an dem Pattern - HTTP Content Negotiation in
 REST APIs (restfulapi.net)
 
+---------------------------------------------------------
+
 ## PaymentService
+
+1. Starte den Service „PaymentService (https)“ und „GrpcService (http)“.
+2. Json:
+    - POST https://localhost:7035/Payment/AddPayment
+    - Body: 
+  ```json
+     {
+  "date": "2022-02-02",
+  "id": 1337,
+  "payee": "Test",
+  "amount": 100,
+  "sagaId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "isReserved": true
+}
+  ```
+3. XML:
+    - POST https://localhost:7035/Payment/AddPaymentXml
+    - Body:
+  ```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Payment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>5</Id>
+  <Payee>Peter Pan</Payee>
+  <Amount>10</Amount>
+</Payment>
+  ```
+4. CSV:
+    - POST https://localhost:7035/Payment/AddPaymentCsv
+    - Body:
+  ```csv
+  Payee,Amount
+  Hansk,166
+  ```
+5. Check with GET https://localhost:7035/Payment/GetPayment
 
 ---------------------------------------------------------
 

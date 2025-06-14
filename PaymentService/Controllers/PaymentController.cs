@@ -1,8 +1,14 @@
+using CsvHelper;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using PaymentService.Models;
+using System.Formats.Asn1;
+using System.Globalization;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace PaymentService.Controllers
 {
@@ -48,6 +54,88 @@ namespace PaymentService.Controllers
             });
 
             return CreatedAtAction(nameof(GetPayments), new { id = payment.Id }, payment);
+        }
+
+        [HttpPost("AddPaymentXml")]
+        [Produces("text/xml")]
+        [Consumes("text/xml")]
+        public async Task<ActionResult> CreatePayment()
+        {
+            string xml;
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(Request.Body, Encoding.UTF8))
+            {
+                xml = await reader.ReadToEndAsync();
+            }
+
+            var docu = XDocument.Parse(xml);
+
+            Payment payment = DeserializeXmlData<Payment>(docu);
+
+            if (payment == null)
+            {
+                return BadRequest("Invalid XML format");
+            }
+
+            payment.Id = Payments.Count + 1;
+            Payments.Add(payment);
+
+            await SendOrderCreatedWebhookAsync(payment).ContinueWith(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    _logger.LogError("Failed to send webhook: {0}", task.Exception?.Message);
+                }
+            });
+
+            return CreatedAtAction(nameof(GetPayments), new { id = payment.Id }, payment);         
+        }
+
+        [HttpPost("AddPaymentCsv")]
+        [Produces("text/csv")]
+        [Consumes("text/csv")]
+        public async Task<ActionResult> CreatePaymentCsv()
+        {
+            try
+            {
+                using (StreamReader reader = new StreamReader(Request.Body))
+                {
+                    var configuration = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
+                    {
+                        HasHeaderRecord = true,
+                        MissingFieldFound = null // Ignore missing fields
+                    };
+
+                    using (var csvr = new CsvReader(reader, configuration))
+                    {
+                        await csvr.ReadAsync();
+                        csvr.ReadHeader();
+                        var payment = csvr.GetRecordsAsync<Payment>().ToBlockingEnumerable().FirstOrDefault();
+
+                        if (payment == null)
+                        {
+                            return BadRequest("Invalid XML format");
+                        }
+
+                        payment.Id = Payments.Count + 1;
+                        Payments.Add(payment);
+
+                        await SendOrderCreatedWebhookAsync(payment).ContinueWith(task =>
+                        {
+                            if (task.IsFaulted)
+                            {
+                                _logger.LogError("Failed to send webhook: {0}", task.Exception?.Message);
+                            }
+                        });
+
+                        return Created();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error reading CSV data");
+                return BadRequest("Invalid CSV format");
+            }
         }
 
         private async Task SendOrderCreatedWebhookAsync(Payment payment)
@@ -128,5 +216,11 @@ namespace PaymentService.Controllers
 
 			return Ok(payment);
 		}
-	}
+
+        public static T DeserializeXmlData<T>(XDocument document)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
+            return (T)serializer.Deserialize(document.CreateReader())!;
+        }
+    }
 }
