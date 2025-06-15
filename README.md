@@ -49,10 +49,10 @@ Jeder Bounded Context definiert eine eindeutige Geschäftsdomäne mit eigener Sp
 
 Microservices setzen DDD-Prinzipien ideal um:
 
--Jeder Microservice entspricht einem Bounded Context
--Business Capabilities (Geschäftsfähigkeiten) werden isoliert abgebildet
--Autonome Teams pro Service (Conway’s Law)
--Decentralized Data Management (jeder Service verwaltet seine Daten selbst)
+- Jeder Microservice entspricht einem Bounded Context
+- Business Capabilities (Geschäftsfähigkeiten) werden isoliert abgebildet
+- Autonome Teams pro Service (Conway’s Law)
+- Decentralized Data Management (jeder Service verwaltet seine Daten selbst)
 
 Vorteile:  
 ✅ Klare Trennung der Verantwortlichkeiten  
@@ -432,13 +432,13 @@ Vorteile: Lose Koppelung, Flexible Erweiterung (wenn zb. neue Payment Services i
 
 ### Sinnhaftigkeit für Trading Plattform
 Unterschiedliche Payment-Servies die sich in Zukunft auch verändern können:
-Aktuell: Kreditkartenzahlung, Paypal, Vorauskasse, Rechnung
-Zukunft: Kryptowährungen
+- Aktuell: Kreditkartenzahlung, Paypal, Vorauskasse, Rechnung
+- Zukunft: Kryptowährungen
 Broker nimmt alle Anfragen entgegen und entscheidet anhand eines Sets von Regeln und Konfigurationen welches Payment-Service aufgerufen wird 
 
 ### Message Broker (anhand des Redis-Beispiels)
 Ein Message Broker wie Redis Streams oder Kafka unterstützt asynchrone Kommunikation und erlaubt daher mehreren Clients (z.B. Payment-Services) auf Nachrichten reagieren zu können. 
-Entwurf eines Redis-basierter Payment-Broker:
+Entwurf eines Redis-basierten Payment-Broker:
 
 1. Broker publiziert Nachricht in Stream "payment_requests"
 2. Je nach Service-Verfügbarkeit oder Methode konsumiert der passende Service die Nachricht
@@ -450,7 +450,7 @@ Vorteile laut Redis:
 - Entkopplung von Sender / Empfänger
 
 ### Canonical Data Model (= CDM)
-Stellst sicher, dall alle Services ein einheitliches Format verwenden. Somit eine Art "Korsett" für die Daten
+Stellt sicher, dass alle Services ein einheitliches Format verwenden. Somit eine Art "Korsett" für die Daten
 Vorteile:
 - Vereinfachte Integration neuer Services
 - Klar definierte Kommunikation
@@ -459,14 +459,14 @@ Vorteile:
 ### Conclusio 
 Ein PaymentService-Broker in der Microservice-basierten Handelsplattform…
 
-…vermittelt intelligent zwischen verschiedenen Zahlungsdiensten
-…nutzt idealerweise einen Message-Broker für asynchrone, fehlertolerante Verarbeitung
-…arbeitet mit einem Canonical Data Model, um alle Services unabhängig und standardisiert anzusprechen
+…vermittelt intelligent zwischen verschiedenen Zahlungsdiensten  
+…nutzt idealerweise einen Message-Broker für asynchrone, fehlertolerante Verarbeitung  
+…arbeitet mit einem Canonical Data Model, um alle Services unabhängig und standardisiert anzusprechen  
 …erlaubt einfache Erweiterbarkeit und bessere Skalierbarkeit im Zahlungssystem
 
 ---------------------------------------------------------
 
-# Aufgabe 7 - Coding Webhook - TODO: kurze beschreibung
+# Aufgabe 7 - Coding Webhook
 Webhook-Subscriber: Überlegen und implementieren Sie ein mögliches Webhook-Szenario.
 
 ---------------------------------------------------------
@@ -507,7 +507,8 @@ es werden im ODataClient (Console Application) exemplarisch 3 Abfragen durchgef�
 Machen Sie sich mit dem Begriff SAGA-Pattern vertraut. Überlegen und implementieren Sie ein mögliches SAGA-Pattern
 Szenario(Service & Client)-Szenario
 
-Umgang mit Ausfallsicherheit –Stichwort: Design for failure / Resilient Software Design
+Umgang mit Ausfallsicherheit
+– Stichwort: Design for failure / Resilient Software Design
 
 ---------------------------------------------------------
 
